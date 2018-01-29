@@ -1,0 +1,33 @@
+{
+  "__enum__": {
+    "HEADER_ONLY": 1,
+    "STATUS": 2,
+    "STATIC_ARRAY": 3,
+    "VARIADIC_ARRAY": 4
+  },
+  "Header": {
+    "attributes": [
+      { "size": "uint32_t" },
+      { "type": "uint32_t" }
+    ],
+    "enum": "HEADER_ONLY"
+  },
+  "Status": {
+    "attributes": [
+      { "status": "int32_t" }
+    ],
+    "enum": "STATUS"
+  },
+  "StaticArray": {
+    "attributes": [
+      { "myarray": { "array": "uint32_t", "length": 8 } }
+    ],
+    "enum": "STATIC_ARRAY"
+  },
+  "VariadicArray": {
+    "attributes": [
+      { "myvariadic": { "length": "uint32_t", "variadic": "Status" } }
+    ],
+    "enum": "VARIADIC_ARRAY"
+  }
+}
