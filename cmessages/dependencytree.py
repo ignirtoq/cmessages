@@ -40,6 +40,13 @@ class DependencyTree:
         resolved.append(parentname)
     return resolved
 
+  def reset(self):
+    """
+    Reset all dependencies and mark them as unprocessed.
+    """
+    for dependency in self.types.values():
+      dependency.reset()
+
 
 class Dependency:
   """
@@ -54,6 +61,9 @@ class Dependency:
     if dep in self.unprocessed_dependencies:
       self.unprocessed_dependencies.remove(dep)
 
+  def reset(self):
+    self.unprocessed_dependencies = self.dependencies.copy()
+
   def _load_config(self, cfg):
     for attr in cfg['attributes']:
       for name, type in attr.items():
@@ -63,7 +73,7 @@ class Dependency:
         elif isinstance(type, dict):
           # Dictionaries are arrays of members.
           self._load_member_array(type)
-    self.unprocessed_dependencies = self.dependencies.copy()
+    self.reset()
 
   def _load_member(self, type):
     self.dependencies.add(type)

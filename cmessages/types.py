@@ -35,3 +35,7 @@ def attributes_to_fields(attributes: Mapping, types: Mapping=primitives) -> list
           ctype = basetype * length
       fields.append((attrname, ctype))
   return fields
+
+class DefaultHeader(ctypes.BigEndianStructure):
+  _fields_ = [('size', ctypes.c_uint32), ('type', ctypes.c_uint32)]
+  _pack_ = 1
